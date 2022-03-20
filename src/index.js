@@ -8,6 +8,7 @@ import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { QuizzesList } from "./features/quizzes/QuizzesList";
 import { AddQuiz } from "./features/quizzes/AddQuiz";
+import { EditQuiz } from "./features/quizzes/EditQuiz";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -17,7 +18,8 @@ ReactDOM.render(
           <Route path="/" element={<App />}>
             <Route index element={<QuizzesList />} />
             <Route path="addQuiz" element={<AddQuiz />} />
-    
+            <Route path="editQuiz/:id" element={<EditQuiz />} />
+            
           </Route>
         </Routes>
       </BrowserRouter>

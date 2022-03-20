@@ -14,6 +14,10 @@ export const QuizzesList = () => {
         <Link to={`/quizzes/${quiz.id}`} className="button muted-button">
           Take Quiz
         </Link>
+        {" "}
+        <Link to={`/editQuiz/${quiz.id}`} className="button muted-button">
+          Edit Quiz
+        </Link>
       </article>
     ))
     .reverse();
