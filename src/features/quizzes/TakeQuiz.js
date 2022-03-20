@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import styles from "./TakeQuiz.module.css";
 
 const TakeQuiz = () => {
+  const navigate = useNavigate();
   const [counter, setCounter] = useState(0);
   const [answers, setAnswers] = useState({});
-
+  const [score, setScore] = useState(0);
   const params = useParams();
   const quiz = useSelector((state) =>
     state.quizzes.find((quiz) => quiz.id === params.id)
@@ -35,6 +36,27 @@ const TakeQuiz = () => {
     setQuestion(quiz.questions_answers[counter + 1]);
   };
 
+  const calculateAndUpdateScore = () => {
+    if (Object.keys(answers).length === 0) {
+      window.alert(`You should answer the question`);
+      return;
+    }
+    let score = 0;
+    for (const key of Object.keys(answers)) {
+      const question = quiz.questions_answers.find(
+        (question) => question.id == key
+      );
+      console.log(question);
+      const correctAnswer = question.answers.find((answer) => answer.is_true);
+      if (correctAnswer.id == answers[key]) {
+        score++;
+      }
+    }
+    setScore(score);
+    window.alert(`You've scored ${score}`);
+    navigate("/");
+  };
+
   return (
     <div>
       <h2>{quiz.title}</h2>
@@ -54,7 +76,7 @@ const TakeQuiz = () => {
                 onChange={(e) => {
                   setAnswers({
                     ...answers,
-                    [e.target.id]: e.target.value,
+                    [question.id]: e.target.value,
                   });
                 }}
               />
@@ -70,10 +92,7 @@ const TakeQuiz = () => {
           className={styles.button}
           type="button"
           value={"Finish"}
-          onClick={() => {
-            console.log("finsihed");
-            console.log({ answers });
-          }}
+          onClick={calculateAndUpdateScore}
         />
       ) : (
         <input
