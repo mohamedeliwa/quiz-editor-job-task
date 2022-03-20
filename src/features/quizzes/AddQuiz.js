@@ -1,3 +1,4 @@
+import { nanoid } from "@reduxjs/toolkit";
 import { QuizManipulation } from "../../components/QuizManipulation";
 
 export const AddQuiz = () => {
@@ -7,7 +8,7 @@ export const AddQuiz = () => {
       {/* passing the initial state of a new quiz*/}
       <QuizManipulation
         quiz={{
-          id: "",
+          id: nanoid(),
           title: "",
           score: "N/A",
           questions_answers: [],

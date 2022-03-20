@@ -35,8 +35,6 @@ const emptyQuestionState = {
   ],
 };
 
-
-
 export const QuizManipulation = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();

@@ -1,3 +1,4 @@
+import { nanoid } from "@reduxjs/toolkit";
 import { useEffect, useState } from "react";
 import styles from "./QuizManipulation.module.css";
 
@@ -7,8 +8,13 @@ function QuestionForm(props) {
   useEffect(() => {
     setQuestion({
       ...props.question,
+      id: props.question.id || nanoid(),
     });
   }, [props.question]);
+
+  useEffect(() => {
+    console.log(question.id);
+  }, [question.id]);
 
   const questionSubmitted = (e) => {
     e.preventDefault();
@@ -32,6 +38,7 @@ function QuestionForm(props) {
   };
 
   const AnswersInputs = question.answers.map((answer, index) => {
+    answer.id  = answer.id || nanoid()
     return (
       <div className={styles.inputContainer} key={index}>
         <label htmlFor="quizTitle">answer no.{index + 1}:</label>
