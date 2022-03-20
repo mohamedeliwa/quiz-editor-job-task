@@ -11,7 +11,7 @@ export const QuizzesList = () => {
         <p className="quiz-content">
           {quiz.questions_answers.length} questions
         </p>
-        <Link to={`/quizzes/${quiz.id}`} className="button muted-button">
+        <Link to={`/takeQuiz/${quiz.id}`} className="button muted-button">
           Take Quiz
         </Link>
         {" "}
