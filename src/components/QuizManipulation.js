@@ -4,9 +4,9 @@ import QuestionForm from "./QuestionForm";
 import styles from "./QuizManipulation.module.css";
 
 export const QuizManipulation = (props) => {
-  const [quiz, setQuiz] = useState({...props.quiz});
+  const [quiz, setQuiz] = useState({ ...props.quiz });
   const [question, setQuestion] = useState({
-    id: 53,
+    id: 5300,
     text: "question 1 text",
     feedback_false: "question 1 false feedback",
     feedback_true: "question 1 true feedback",
@@ -50,22 +50,48 @@ export const QuizManipulation = (props) => {
     }
   };
 
-  const questionSubmitted = (e) => {
-    e.preventDefault();
-    console.log(question);
+  const questionSubmitted = (question) => {
+    let isUpdatedQuestion = quiz.questions_answers.find((item) => {
+      return item.id === question.id;
+    });
+    if (isUpdatedQuestion) {
+      // incase the user is updating an exisiing question
+      let questions = quiz.questions_answers.slice();
+      questions = questions.map((item) => {
+        if (item.id === question.id) {
+          return question;
+        } else {
+          return item;
+        }
+      });
+
+      setQuiz({
+        ...quiz,
+        questions_answers: [...questions],
+      });
+    } else {
+      // in case the use is adding a new question
+      setQuiz({
+        ...quiz,
+        questions_answers: [...quiz.questions_answers, question],
+      });
+    }
   };
 
-  const AddedQuestions = quiz.questions_answers.map((question, index) => {
-    return (
-      <div className={styles.questionContainer} key={question.id}>
-        <p>{question.text}</p>
-        <p>{question.answers.find((answer) => answer.is_true).text}</p>
-        <button>edit</button>
-        <button>delete</button>
-      </div>
-    );
-  });
-  console.log(quiz);
+  const AddedQuestions = quiz.questions_answers
+    .map((question, index) => {
+      return (
+        <div className={styles.questionContainer} key={question.id}>
+          <p>{question.text}</p>
+          <p>{question.answers.find((answer) => answer.is_true).text}</p>
+          <button>edit</button>
+          <button>delete</button>
+        </div>
+      );
+    })
+    .reverse();
+
+    
   return (
     <section className={styles.container}>
       {/* the title of the Quiz */}

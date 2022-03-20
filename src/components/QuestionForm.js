@@ -6,7 +6,7 @@ function QuestionForm(props) {
 
   const questionSubmitted = (e) => {
     e.preventDefault();
-    console.log(question);
+    props.onFinish(question);
   };
 
   const handleTheRightAnswer = (e) => {
