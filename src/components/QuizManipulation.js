@@ -3,39 +3,43 @@ import { useDispatch } from "react-redux";
 import QuestionForm from "./QuestionForm";
 import styles from "./QuizManipulation.module.css";
 
-export const QuizManipulation = (props) => {
-  const [quiz, setQuiz] = useState({ ...props.quiz });
-  const [question, setQuestion] = useState({
-    id: 5300,
-    text: "question 1 text",
-    feedback_false: "question 1 false feedback",
-    feedback_true: "question 1 true feedback",
-    answer_id: null,
-    answers: [
-      {
-        id: 122,
-        is_true: false,
-        text: "question 1 answer 1 false",
-      },
-      {
-        id: 123,
-        is_true: false,
-        text: "question 1 answer 2 false",
-      },
-      {
-        id: 124,
-        is_true: true,
-        text: "question 1 answer 3 true",
-      },
-      {
-        id: 125,
-        is_true: false,
-        text: "question 1 answer 4 false",
-      },
-    ],
-  });
+const emptyQuestionState = {
+  id: null,
+  text: "",
+  feedback_false: "",
+  feedback_true: "",
+  answer_id: null,
+  answers: [
+    {
+      id: null,
+      is_true: false,
+      text: "",
+    },
+    {
+      id: null,
+      is_true: false,
+      text: "",
+    },
+    {
+      id: null,
+      is_true: false,
+      text: "",
+    },
+    {
+      id: null,
+      is_true: false,
+      text: "",
+    },
+  ],
+};
 
+
+
+export const QuizManipulation = (props) => {
   const dispatch = useDispatch();
+  const [quiz, setQuiz] = useState({ ...props.quiz });
+  const [question, setQuestion] = useState({ ...emptyQuestionState });
+
   const onTitleChanged = (e) =>
     setQuiz({
       ...quiz,
@@ -77,33 +81,7 @@ export const QuizManipulation = (props) => {
       });
     }
     setQuestion({
-      id: null,
-      text: "",
-      feedback_false: "",
-      feedback_true: "",
-      answer_id: null,
-      answers: [
-        {
-          id: null,
-          is_true: false,
-          text: "",
-        },
-        {
-          id: null,
-          is_true: false,
-          text: "",
-        },
-        {
-          id: null,
-          is_true: false,
-          text: "",
-        },
-        {
-          id: null,
-          is_true: false,
-          text: "",
-        },
-      ],
+      ...emptyQuestionState,
     });
   };
 
@@ -112,6 +90,12 @@ export const QuizManipulation = (props) => {
     console.log(question);
     setQuestion({
       ...question,
+    });
+  };
+
+  const handleQuestionCancelation = () => {
+    setQuestion({
+      ...emptyQuestionState,
     });
   };
 
@@ -150,7 +134,11 @@ export const QuizManipulation = (props) => {
 
       {/* A form to add new Questions to the quiz  */}
       <p>Add a Question to the Quiz</p>
-      <QuestionForm question={{ ...question }} onFinish={questionSubmitted} />
+      <QuestionForm
+        question={{ ...question }}
+        onFinish={questionSubmitted}
+        onCancel={handleQuestionCancelation}
+      />
       <hr />
       {AddedQuestions}
     </section>

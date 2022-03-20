@@ -173,6 +173,13 @@ function QuestionForm(props) {
       </div>
 
       <input type="submit" value="Save Question" className={styles.subSubmit} />
+      {" "}
+      <input
+        type="button"
+        value="Cancel"
+        className={styles.subSubmit}
+        onClick={props.onCancel}
+      />
     </form>
   );
 }
