@@ -45,20 +45,8 @@ const quizzesSlice = createSlice({
   name: "quizzes",
   initialState,
   reducers: {
-    quizAdded: {
-      reducer(quizzes, action) {
-        quizzes.push(action.payload);
-      },
-      prepare(title, score, questions_answers) {
-        return {
-          payload: {
-            id: nanoid(),
-            title,
-            score,
-            questions_answers,
-          },
-        };
-      },
+    quizAdded: (quizzes, action) => {
+      quizzes.push(action.payload);
     },
     quizUpdated: {
       reducer(quizzes, action) {

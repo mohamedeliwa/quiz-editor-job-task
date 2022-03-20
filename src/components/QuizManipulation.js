@@ -39,6 +39,7 @@ const emptyQuestionState = {
 
 export const QuizManipulation = (props) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [quiz, setQuiz] = useState({ ...props.quiz });
   const [question, setQuestion] = useState({ ...emptyQuestionState });
 
