@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { quizAdded } from "../features/quizzes/quizzesSlice";
 import QuestionForm from "./QuestionForm";
 import styles from "./QuizManipulation.module.css";
 
@@ -47,11 +49,8 @@ export const QuizManipulation = (props) => {
     });
 
   const onSaveQuizClicked = () => {
-    console.log({ props });
-    console.log({ quiz });
-    if (quiz.title) {
-      //   dispatch(quizAdded(title, content));
-    }
+    dispatch(quizAdded(quiz));
+    navigate("/");
   };
 
   const questionSubmitted = (question) => {
