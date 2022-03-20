@@ -21,6 +21,13 @@ const TakeQuiz = () => {
         <Link to="/">Go Home</Link>
       </div>
     );
+  } else if (!question) {
+    return (
+      <div>
+        <p>This Quiz Doesn't contain questions!</p>
+        <Link to="/">Go Home</Link>
+      </div>
+    );
   }
 
   const goToNextQuestion = () => {
