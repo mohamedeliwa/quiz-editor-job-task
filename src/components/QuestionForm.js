@@ -38,7 +38,9 @@ function QuestionForm(props) {
   };
 
   const AnswersInputs = question.answers.map((answer, index) => {
-    answer.id  = answer.id || nanoid()
+    if (!answer.id) {
+      answer.id = nanoid();
+    }
     return (
       <div className={styles.inputContainer} key={index}>
         <label htmlFor="quizTitle">answer no.{index + 1}:</label>

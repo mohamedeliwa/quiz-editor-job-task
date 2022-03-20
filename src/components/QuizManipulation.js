@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { quizAdded } from "../features/quizzes/quizzesSlice";
+import { quizAdded, quizUpdated } from "../features/quizzes/quizzesSlice";
 import QuestionForm from "./QuestionForm";
 import styles from "./QuizManipulation.module.css";
 
@@ -41,6 +41,9 @@ export const QuizManipulation = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [quiz, setQuiz] = useState({ ...props.quiz });
+  const isRepeatedQuiz = useSelector((state) =>
+    state.quizzes.find((quiz) => quiz.id === props.quiz.id)
+  );
   const [question, setQuestion] = useState({ ...emptyQuestionState() });
 
   const onTitleChanged = (e) =>
@@ -50,7 +53,15 @@ export const QuizManipulation = (props) => {
     });
 
   const onSaveQuizClicked = () => {
-    dispatch(quizAdded(quiz));
+    console.log(!isRepeatedQuiz);
+    if (!isRepeatedQuiz) {
+      dispatch(quizAdded(quiz));
+    } else {
+      // I should dispatch an update here
+      dispatch(
+        quizUpdated(quiz.id, quiz.title, quiz.score, quiz.questions_answers)
+      );
+    }
     navigate("/");
   };
 
