@@ -7,17 +7,19 @@ import { Provider } from "react-redux";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { QuizzesList } from "./features/quizzes/QuizzesList";
+import { AddQuiz } from "./features/quizzes/AddQuiz";
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-        <Route path="/" element={<App />}>
-          <Route index element={<QuizzesList />} />
-       
-        </Route>
-      </Routes>
+          <Route path="/" element={<App />}>
+            <Route index element={<QuizzesList />} />
+            <Route path="addQuiz" element={<AddQuiz />} />
+    
+          </Route>
+        </Routes>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>,

@@ -62,7 +62,7 @@ const quizzesSlice = createSlice({
     },
     quizUpdated: {
       reducer(quizzes, action) {
-        const { id, title, questions_answers } = action.payload;
+        const { id, title, score, questions_answers } = action.payload;
         const existingquiz = quizzes.find((quiz) => quiz.id === id);
         if (existingquiz) {
           existingquiz.title = title;

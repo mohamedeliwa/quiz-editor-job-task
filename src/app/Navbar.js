@@ -8,7 +8,8 @@ export const Navbar = () => {
         <div className="navContent">
           <div className="navLinks">
             <div className="navLinks">
-              <NavLink to="/">Create a new Quiz</NavLink>
+              <NavLink to="/">Home</NavLink>
+              <NavLink to="/addQuiz">Create a new Quiz</NavLink>
             </div>
           </div>
         </div>

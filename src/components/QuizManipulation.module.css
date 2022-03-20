@@ -1,0 +1,75 @@
+.container {
+  background-color: #eee;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.inputContainer {
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+}
+
+.input {
+  height: 1.5rem;
+  margin-top: 0.3rem;
+  margin-left: 0.8rem;
+  border: 1px solid rgb(199, 197, 197);
+  border-radius: 5px;
+  padding: 0.2rem;
+}
+
+.submit {
+  height: 3rem;
+  min-width: 10rem;
+  color: white;
+  font-size: 20px;
+  margin: 0 auto;
+  background-color: #764abc;
+  border: 1px solid #764abc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.questionForm {
+  border: 1px solid rgb(122, 120, 120);
+  margin: 2rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+.subSubmit {
+  height: 1.5rem;
+  min-width: 10rem;
+  color: white;
+  font-size: 15px;
+  margin: 0 auto;
+  background-color: #764abc;
+  border: 1px solid #764abc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.questionContainer {
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+}
+
+.questionContainer button {
+  background-color: #764abc;
+  border: 1px solid #764abc;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+
+}
