@@ -15,7 +15,7 @@ const emptyQuestionState = () => {
     answers: [
       {
         id: null,
-        is_true: false,
+        is_true: true,
         text: "",
       },
       {
