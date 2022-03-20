@@ -31,6 +31,33 @@ function QuestionForm(props) {
     });
   };
 
+  const AnswersInputs = question.answers.map((answer, index) => {
+    return (
+      <div className={styles.inputContainer} key={index}>
+        <label htmlFor="quizTitle">answer no.{index + 1}:</label>
+        <input
+          className={styles.input}
+          type="text"
+          id={`questionanswer${index + 1}`}
+          name={`questionanswer${index + 1}`}
+          value={answer.text}
+          onChange={(e) => {
+            const answers = question.answers.slice();
+            answers[index].text = e.target.value;
+            setQuestion({ ...question, answers: [...answers] });
+          }}
+        />
+        <input
+          type="radio"
+          id={index}
+          name="truth"
+          onChange={handleTheRightAnswer}
+          checked={question.answers[index].is_true}
+        />
+      </div>
+    );
+  });
+
   return (
     <form className={styles.questionForm} onSubmit={questionSubmitted}>
       {/* Question Text */}
@@ -45,7 +72,6 @@ function QuestionForm(props) {
           onChange={(e) => setQuestion({ ...question, text: e.target.value })}
         />
       </div>
-
       {/* Question true feedback */}
       <div className={styles.inputContainer}>
         <label htmlFor="quizTitle">True feedback:</label>
@@ -60,7 +86,6 @@ function QuestionForm(props) {
           }
         />
       </div>
-
       {/* Question false feedback */}
       <div className={styles.inputContainer}>
         <label htmlFor="quizTitle">False feedback:</label>
@@ -75,105 +100,12 @@ function QuestionForm(props) {
           }
         />
       </div>
-
-      {/* Question 1st answer */}
-      <div className={styles.inputContainer}>
-        <label htmlFor="quizTitle">1st answer:</label>
-        <input
-          className={styles.input}
-          type="text"
-          id="question1answer"
-          name="question1answer"
-          value={question.answers[0].text}
-          onChange={(e) => {
-            const answers = question.answers.slice();
-            answers[0].text = e.target.value;
-            setQuestion({ ...question, answers });
-          }}
-        />
-        <input
-          type="radio"
-          id="0"
-          name="truth"
-          onChange={handleTheRightAnswer}
-          checked={question.answers[0].is_true}
-        />
-      </div>
-
-      {/* Question 2nd answer */}
-      <div className={styles.inputContainer}>
-        <label htmlFor="quizTitle">2nd answer:</label>
-        <input
-          className={styles.input}
-          type="text"
-          id="question2answer"
-          name="question2answer"
-          value={question.answers[1].text}
-          onChange={(e) => {
-            const answers = question.answers.slice();
-            answers[1].text = e.target.value;
-            setQuestion({ ...question, answers });
-          }}
-        />
-        <input
-          type="radio"
-          id="1"
-          name="truth"
-          onChange={handleTheRightAnswer}
-          checked={question.answers[1].is_true}
-        />
-      </div>
-
-      {/* Question 3rd answer */}
-      <div className={styles.inputContainer}>
-        <label htmlFor="quizTitle">3rd answer :</label>
-        <input
-          className={styles.input}
-          type="text"
-          id="question3answer"
-          name="question3answer"
-          value={question.answers[2].text}
-          onChange={(e) => {
-            const answers = question.answers.slice();
-            answers[2].text = e.target.value;
-            setQuestion({ ...question, answers });
-          }}
-        />
-        <input
-          type="radio"
-          id="2"
-          name="truth"
-          onChange={handleTheRightAnswer}
-          checked={question.answers[2].is_true}
-        />
-      </div>
-
-      {/* Question 4th answer */}
-      <div className={styles.inputContainer}>
-        <label htmlFor="quizTitle">4th answer:</label>
-        <input
-          className={styles.input}
-          type="text"
-          id="question4answer"
-          name="question4answer"
-          value={question.answers[3].text}
-          onChange={(e) => {
-            const answers = question.answers.slice();
-            answers[3].text = e.target.value;
-            setQuestion({ ...question, answers });
-          }}
-        />
-        <input
-          type="radio"
-          id="3"
-          name="truth"
-          onChange={handleTheRightAnswer}
-          checked={question.answers[3].is_true}
-        />
-      </div>
-
-      <input type="submit" value="Save Question" className={styles.subSubmit} />
-      {" "}
+      {AnswersInputs}
+      <input
+        type="submit"
+        value="Save Question"
+        className={styles.subSubmit}
+      />{" "}
       <input
         type="button"
         value="Cancel"
