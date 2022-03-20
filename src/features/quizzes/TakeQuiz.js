@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { quizUpdated } from "./quizzesSlice";
 import styles from "./TakeQuiz.module.css";
 
 const TakeQuiz = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [counter, setCounter] = useState(0);
   const [answers, setAnswers] = useState({});
   const [score, setScore] = useState(0);
@@ -50,7 +52,7 @@ const TakeQuiz = () => {
       const question = quiz.questions_answers.find(
         (question) => question.id == key
       );
-      console.log(question);
+
       const correctAnswer = question.answers.find((answer) => answer.is_true);
       if (correctAnswer.id == answers[key]) {
         score++;
@@ -60,6 +62,7 @@ const TakeQuiz = () => {
     window.alert(
       `You've scored ${score} out of ${quiz.questions_answers.length}`
     );
+    dispatch(quizUpdated(quiz.id, quiz.title, score, quiz.questions_answers));
     navigate("/");
   };
 
