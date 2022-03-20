@@ -1,8 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./QuizManipulation.module.css";
 
 function QuestionForm(props) {
   const [question, setQuestion] = useState({ ...props.question });
+
+  useEffect(() => {
+    setQuestion({
+      ...props.question,
+    });
+  }, [props.question]);
 
   const questionSubmitted = (e) => {
     e.preventDefault();

@@ -76,6 +76,43 @@ export const QuizManipulation = (props) => {
         questions_answers: [...quiz.questions_answers, question],
       });
     }
+    setQuestion({
+      id: null,
+      text: "",
+      feedback_false: "",
+      feedback_true: "",
+      answer_id: null,
+      answers: [
+        {
+          id: null,
+          is_true: false,
+          text: "",
+        },
+        {
+          id: null,
+          is_true: false,
+          text: "",
+        },
+        {
+          id: null,
+          is_true: false,
+          text: "",
+        },
+        {
+          id: null,
+          is_true: false,
+          text: "",
+        },
+      ],
+    });
+  };
+
+  const passQuestionToEdit = (id) => {
+    const question = quiz.questions_answers.find((item) => item.id === id);
+    console.log(question);
+    setQuestion({
+      ...question,
+    });
   };
 
   const AddedQuestions = quiz.questions_answers
@@ -84,14 +121,13 @@ export const QuizManipulation = (props) => {
         <div className={styles.questionContainer} key={question.id}>
           <p>{question.text}</p>
           <p>{question.answers.find((answer) => answer.is_true).text}</p>
-          <button>edit</button>
+          <button onClick={() => passQuestionToEdit(question.id)}>edit</button>
           <button>delete</button>
         </div>
       );
     })
     .reverse();
 
-    
   return (
     <section className={styles.container}>
       {/* the title of the Quiz */}
