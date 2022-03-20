@@ -87,9 +87,16 @@ export const QuizManipulation = (props) => {
 
   const passQuestionToEdit = (id) => {
     const question = quiz.questions_answers.find((item) => item.id === id);
-    console.log(question);
     setQuestion({
       ...question,
+    });
+  };
+
+  const deleteQuestion = (id) => {
+    const questions = quiz.questions_answers.filter((item) => item.id !== id);
+    setQuiz({
+      ...quiz,
+      questions_answers: [...questions],
     });
   };
 
@@ -106,7 +113,7 @@ export const QuizManipulation = (props) => {
           <p>{question.text}</p>
           <p>{question.answers.find((answer) => answer.is_true).text}</p>
           <button onClick={() => passQuestionToEdit(question.id)}>edit</button>
-          <button>delete</button>
+          <button onClick={() => deleteQuestion(question.id)}>delete</button>
         </div>
       );
     })
