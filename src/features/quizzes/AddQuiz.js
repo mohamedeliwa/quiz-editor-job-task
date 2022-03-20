@@ -1,7 +1,4 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { QuizManipulation } from "../../components/QuizManipulation";
-import { quizAdded } from "./quizzesSlice";
 
 export const AddQuiz = () => {
   return (
