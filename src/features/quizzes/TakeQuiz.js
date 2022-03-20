@@ -32,6 +32,10 @@ const TakeQuiz = () => {
   }
 
   const goToNextQuestion = () => {
+    if (Object.keys(answers).length === counter) {
+      window.alert(`You should answer the question`);
+      return;
+    }
     setCounter((counter) => counter + 1);
     setQuestion(quiz.questions_answers[counter + 1]);
   };
@@ -53,7 +57,9 @@ const TakeQuiz = () => {
       }
     }
     setScore(score);
-    window.alert(`You've scored ${score}`);
+    window.alert(
+      `You've scored ${score} out of ${quiz.questions_answers.length}`
+    );
     navigate("/");
   };
 
