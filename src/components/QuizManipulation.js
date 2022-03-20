@@ -5,41 +5,43 @@ import { quizAdded } from "../features/quizzes/quizzesSlice";
 import QuestionForm from "./QuestionForm";
 import styles from "./QuizManipulation.module.css";
 
-const emptyQuestionState = {
-  id: null,
-  text: "",
-  feedback_false: "",
-  feedback_true: "",
-  answer_id: null,
-  answers: [
-    {
-      id: null,
-      is_true: false,
-      text: "",
-    },
-    {
-      id: null,
-      is_true: false,
-      text: "",
-    },
-    {
-      id: null,
-      is_true: false,
-      text: "",
-    },
-    {
-      id: null,
-      is_true: false,
-      text: "",
-    },
-  ],
+const emptyQuestionState = () => {
+  return {
+    id: null,
+    text: "",
+    feedback_false: "",
+    feedback_true: "",
+    answer_id: null,
+    answers: [
+      {
+        id: null,
+        is_true: false,
+        text: "",
+      },
+      {
+        id: null,
+        is_true: false,
+        text: "",
+      },
+      {
+        id: null,
+        is_true: false,
+        text: "",
+      },
+      {
+        id: null,
+        is_true: false,
+        text: "",
+      },
+    ],
+  };
 };
 
 export const QuizManipulation = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [quiz, setQuiz] = useState({ ...props.quiz });
-  const [question, setQuestion] = useState({ ...emptyQuestionState });
+  const [question, setQuestion] = useState({ ...emptyQuestionState() });
 
   const onTitleChanged = (e) =>
     setQuiz({
@@ -79,7 +81,7 @@ export const QuizManipulation = (props) => {
       });
     }
     setQuestion({
-      ...emptyQuestionState,
+      ...emptyQuestionState(),
     });
   };
 
@@ -100,7 +102,7 @@ export const QuizManipulation = (props) => {
 
   const handleQuestionCancelation = () => {
     setQuestion({
-      ...emptyQuestionState,
+      ...emptyQuestionState(),
     });
   };
 
