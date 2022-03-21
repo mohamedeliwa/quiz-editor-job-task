@@ -10,6 +10,8 @@ export const AddQuiz = () => {
         quiz={{
           id: nanoid(),
           title: "",
+          description: "",
+          url: "",
           score: "N/A",
           questions_answers: [],
         }}

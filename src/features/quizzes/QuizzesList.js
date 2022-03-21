@@ -11,8 +11,14 @@ export const QuizzesList = () => {
         <p className="quiz-content">
           {quiz.questions_answers.length} questions
         </p>
+        <p className="quiz-content">score : {quiz.score}</p>
+        <p className="quiz-content">{quiz.description}</p>
         <p className="quiz-content">
-          score : {quiz.score}
+          {quiz.url && (
+            <a href={quiz.url} target="_blank">
+              youtube
+            </a>
+          )}
         </p>
         <Link to={`/takeQuiz/${quiz.id}`} className="button muted-button">
           Take Quiz
@@ -27,7 +33,11 @@ export const QuizzesList = () => {
   return (
     <section className="quizzes-list">
       <h2>Quizzes List</h2>
-      {renderedquizzes}
+      {renderedquizzes.length > 0 ? (
+        renderedquizzes
+      ) : (
+        <p>No quizzes yet, create a new one!</p>
+      )}
     </section>
   );
 };

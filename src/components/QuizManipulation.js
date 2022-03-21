@@ -46,20 +46,43 @@ export const QuizManipulation = (props) => {
   );
   const [question, setQuestion] = useState({ ...emptyQuestionState() });
 
-  const onTitleChanged = (e) =>
-    setQuiz({
-      ...quiz,
-      title: e.target.value,
-    });
+  const onQuizDataChange = (e) => {
+    switch (e.target.name) {
+      case "quizTitle":
+        setQuiz({
+          ...quiz,
+          title: e.target.value,
+        });
+        break;
+      case "quizDescription":
+        setQuiz({
+          ...quiz,
+          description: e.target.value,
+        });
+        break;
+      case "quizurl":
+        setQuiz({
+          ...quiz,
+          url: e.target.value,
+        });
+        break;
+    }
+  };
 
   const onSaveQuizClicked = () => {
-    console.log(!isRepeatedQuiz);
     if (!isRepeatedQuiz) {
       dispatch(quizAdded(quiz));
     } else {
       // I should dispatch an update here
       dispatch(
-        quizUpdated(quiz.id, quiz.title, quiz.score, quiz.questions_answers)
+        quizUpdated(
+          quiz.id,
+          quiz.title,
+          quiz.description,
+          quiz.url,
+          quiz.score,
+          quiz.questions_answers
+        )
       );
     }
     navigate("/");
@@ -141,7 +164,33 @@ export const QuizManipulation = (props) => {
           id="quizTitle"
           name="quizTitle"
           value={quiz.title}
-          onChange={onTitleChanged}
+          onChange={onQuizDataChange}
+        />
+      </div>
+
+      {/* Description of the quiz */}
+      <div className={styles.inputContainer}>
+        <label htmlFor="quizTitle">Description:</label>
+        <input
+          className={styles.input}
+          type="text"
+          id="quizDescription"
+          name="quizDescription"
+          value={quiz.description}
+          onChange={onQuizDataChange}
+        />
+      </div>
+
+      {/* youtube url of the quiz */}
+      <div className={styles.inputContainer}>
+        <label htmlFor="quizTitle">Quiz url:</label>
+        <input
+          className={styles.input}
+          type="text"
+          id="quizurl"
+          name="quizurl"
+          value={quiz.url}
+          onChange={onQuizDataChange}
         />
       </div>
 

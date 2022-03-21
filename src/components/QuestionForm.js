@@ -12,10 +12,6 @@ function QuestionForm(props) {
     });
   }, [props.question]);
 
-  useEffect(() => {
-    console.log(question.id);
-  }, [question.id]);
-
   const questionSubmitted = (e) => {
     e.preventDefault();
     props.onFinish(question);

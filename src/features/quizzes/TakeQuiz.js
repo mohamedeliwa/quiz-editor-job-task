@@ -62,7 +62,16 @@ const TakeQuiz = () => {
     window.alert(
       `You've scored ${score} out of ${quiz.questions_answers.length}`
     );
-    dispatch(quizUpdated(quiz.id, quiz.title, score, quiz.questions_answers));
+    dispatch(
+      quizUpdated(
+        quiz.id,
+        quiz.title,
+        quiz.description,
+        quiz.url,
+        score,
+        quiz.questions_answers
+      )
+    );
     navigate("/");
   };
 
