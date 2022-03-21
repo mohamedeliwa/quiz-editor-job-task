@@ -1,44 +1,70 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+## Used Tools
 
-## Available Scripts
+- [Create React App](https://github.com/facebook/create-react-app)
 
-In the project directory, you can run:
+- [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/)
+
+- [react-router](https://reactrouter.com/docs/en/v6)
+
+- I didn't use any css toolkit like Bootstrap.
+
+- I just used plain HTML and CSS
+
+<br />
+
+> Note: I didn't put much effort in styling, I just focused on redux logic and data management
+
+## Project Structure
+
+- Main page contains:
+
+  - a list of created quizzes, and each one displays
+
+    - title
+    - description
+    - score: will show "N/A" in case the quiz is not yet answered
+    - youtube url
+    - button to edit the quiz
+    - button to take the quiz
+
+  - a nav link to create a new quiz
+
+  - a nav link to the home page
+
+- create new quiz page contains:
+
+  - fields for quiz's title, description and youtube url
+  - fields to add new questions
+
+    - text
+    - true feedback
+    - false feedback
+    - answers text,
+    - radio buttons to choose the right answer, the first is checked by deafult
+
+  - added questions
+    - will be displayed below the add questions form
+    - will display the question text, and right answer
+    - will display two buttons one for editing, and one for deleting the question
+
+- edit quiz page
+
+  - similar to the add new quiz page
+
+- take quiz page
+  - will display quiz questions one by one
+  - you should answer each question
+  - will show the score at the end
+  - then push you back to home
+  - the score will be uipdated in the quizzes list in the home page.
+
+## To run the project
+
+After cloning the project, In the project directory, you can run:
+
+### `npm install`
 
 ### `npm start`
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
